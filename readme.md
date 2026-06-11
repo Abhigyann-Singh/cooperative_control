@@ -10,6 +10,19 @@ This workspace contains the ROS 2 packages used for a cooperative transport setu
 - `src/monitor_pose` - pose monitoring and keyboard control tools
 - `cooperative_transport_world.sdf` - Gazebo world for the transport scenario
 
+## Demo Video
+
+The main trajectory-control demo for the setup is recorded in:
+
+```text
+Trajectory control with 10ms wind.mp4
+```
+
+<video controls width="800">
+  <source src="./Trajectory%20control%20with%2010ms%20wind.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Build
 
 From the workspace root:
@@ -46,13 +59,15 @@ MicroXRCEAgent udp4 -p 8888
 
 ## ROS Nodes
 
-Start the pose monitor:
+### `monitor_pose`
+
+Pose monitor:
 
 ```bash
 cd ~/cooperative_control && source install/setup.bash && ros2 run monitor_pose monitor
 ```
 
-Start the keyboard control node:
+Keyboard control node:
 
 ```bash
 cd ~/cooperative_control && source install/setup.bash && ros2 run monitor_pose keyboard_control
@@ -64,7 +79,15 @@ Bridge the payload pose from Gazebo to ROS:
 ros2 run ros_gz_bridge parameter_bridge /model/rod_payload/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose
 ```
 
-Run the cooperative transport controller:
+### `cooperative_transport`
+
+This package contains three control nodes:
+
+- `offboard_control_pos`: a fixed-position cooperative transport controller that sends preplanned setpoints to both PX4 vehicles.
+- `offboard_control_trajectory`: a trajectory controller that listens to `/rod_target` and computes the dual-drone setpoints for the rod payload.
+- `pid_control`: the closed-loop version of the trajectory controller that adds PID feedback from the rod pose in Gazebo, PID parameters yet to be tuned.
+
+Run the trajectory controller:
 
 ```bash
 ros2 run cooperative_transport offboard_control_trajectory
@@ -74,4 +97,3 @@ ros2 run cooperative_transport offboard_control_trajectory
 
 - The control nodes publish to both PX4 instances through `/fmu/in/...` and `/px4_1/fmu/in/...` topics.
 - The `cooperative_transport` package depends on `px4_ros_com`, `px4_msgs`, `rclcpp`, `std_msgs`, and `geometry_msgs`.
-- If you use a different ROS 2 distribution, replace `<ros-distro>` in the build commands with your installed distro name.
