@@ -4,7 +4,7 @@
   <name>monitor_pose</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="abhigyan@todo.todo">abhigyan</maintainer>
+  <maintainer email="">abhigyan</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
