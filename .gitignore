@@ -1,0 +1,33 @@
+# ROS 2 / colcon workspace outputs
+build/
+install/
+log/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Python packaging / virtualenvs
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Tooling metadata
+.idea/
+.vscode/

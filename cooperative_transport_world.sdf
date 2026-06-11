@@ -1,0 +1,264 @@
+<!-- Add this file to PX4 Autopilot's repo Tools/simulation/gz/worlds/cooperative_transport_world.sdf -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.9">
+  <world name="cooperative_transport_world">
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+    <scene>
+      <grid>false</grid>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <light name="sunUTC" type="directional">
+      <pose>0 0 500 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0.001 0.625 -0.78</direction>
+      <diffuse>0.904 0.904 0.904 1</diffuse>
+      <specular>0.271 0.271 0.271 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <wind>
+      <linear_velocity>0 10 0</linear_velocity>
+    </wind>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>47.397971057728974</latitude_deg>
+      <longitude_deg> 8.546163739800146</longitude_deg>
+      <elevation>0</elevation>
+    </spherical_coordinates>
+    <include>
+      <uri>model://x500</uri>
+      <name>x500_0</name>
+      <pose>-0.5 2 1.0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://x500</uri>
+      <name>x500_1</name>
+      <pose>0.5 2 1.0 0 0 0</pose>
+    </include>
+
+    <model name="rod_payload">
+      <pose>0 2 0.5 0 0 0</pose>
+
+      <link name="rod_link">
+  <inertial>
+    <mass>1.0</mass>
+    <inertia>
+      <ixx>0.000416</ixx>     <iyy>0.08354</iyy>      <izz>0.08354</izz>      </inertia>
+  </inertial>
+  <visual name="visual">
+    <geometry>
+      <box>
+        <size>1 0.05 0.05</size>
+      </box>
+    </geometry>
+    <material>
+      <ambient>0.8 0 0 1</ambient>
+      <diffuse>0.8 0 0 1</diffuse>
+    </material>
+  </visual>
+</link>
+
+      <link name="cable_left_0">
+        <pose>-0.5 0 0.05 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_left_1">
+        <pose>-0.5 0 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_left_2">
+        <pose>-0.5 0 0.25 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_left_3">
+        <pose>-0.5 0 0.35 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_left_4">
+        <pose>-0.5 0 0.45 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_left_top">
+        <pose>-0.5 0 0.5 0 0 0</pose>
+        <inertial><mass>0.01</mass><inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz></inertia></inertial>
+      </link>
+
+      <link name="cable_right_0">
+        <pose>0.5 0 0.05 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_right_1">
+        <pose>0.5 0 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_right_2">
+        <pose>0.5 0 0.25 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_right_3">
+        <pose>0.5 0 0.35 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_right_4">
+        <pose>0.5 0 0.45 0 0 0</pose>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia><ixx>0.000017</ixx><iyy>0.000017</iyy><izz>0.000001</izz></inertia>
+        </inertial>
+        <visual name="v"><geometry><cylinder><radius>0.01</radius><length>0.1</length></cylinder></geometry></visual>
+      </link>
+      <link name="cable_right_top">
+        <pose>0.5 0 0.5 0 0 0</pose>
+        <inertial><mass>0.01</mass><inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz></inertia></inertial>
+      </link>
+
+      <joint name="left_rod_to_0" type="ball"><parent>rod_link</parent><child>cable_left_0</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="left_0_to_1" type="ball"><parent>cable_left_0</parent><child>cable_left_1</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="left_1_to_2" type="ball"><parent>cable_left_1</parent><child>cable_left_2</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="left_2_to_3" type="ball"><parent>cable_left_2</parent><child>cable_left_3</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="left_3_to_4" type="ball"><parent>cable_left_3</parent><child>cable_left_4</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="left_4_to_top" type="ball"><parent>cable_left_4</parent><child>cable_left_top</child><pose>0 0 0 0 0 0</pose></joint>
+
+      <joint name="right_rod_to_0" type="ball"><parent>rod_link</parent><child>cable_right_0</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="right_0_to_1" type="ball"><parent>cable_right_0</parent><child>cable_right_1</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="right_1_to_2" type="ball"><parent>cable_right_1</parent><child>cable_right_2</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="right_2_to_3" type="ball"><parent>cable_right_2</parent><child>cable_right_3</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="right_3_to_4" type="ball"><parent>cable_right_3</parent><child>cable_right_4</child><pose>0 0 -0.05 0 0 0</pose></joint>
+      <joint name="right_4_to_top" type="ball"><parent>cable_right_4</parent><child>cable_right_top</child><pose>0 0 0 0 0 0</pose></joint>
+
+      <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
+        <parent_link>cable_left_top</parent_link>
+        <child_model>x500_0</child_model>
+        <child_link>base_link</child_link>
+        <topic>/x500_0/attach0</topic>
+      </plugin>
+
+      <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
+        <parent_link>cable_right_top</parent_link>
+        <child_model>x500_1</child_model>
+        <child_link>base_link</child_link>
+        <topic>/x500_1/attach1</topic>
+      </plugin>
+
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_model_pose>true</publish_model_pose>
+        <publish_link_pose>false</publish_link_pose>
+        <publish_collision_pose>false</publish_collision_pose>
+        <publish_visual_pose>false</publish_visual_pose>
+        <use_pose_vector_msg>false</use_pose_vector_msg>
+        <update_frequency>100</update_frequency>
+      </plugin>
+    </model>
+
+
+  </world>
+</sdf>
+
+
