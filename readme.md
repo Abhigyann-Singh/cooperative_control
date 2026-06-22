@@ -12,16 +12,13 @@ This workspace contains the ROS 2 packages used for a cooperative transport setu
 
 ## Demo Video
 
-The main trajectory-control demo for the setup is recorded in:
+The main trajectory-control demo for the setup is embedded below:
 
 ```text
-Trajectory control with 10ms wind.mp4
+Trajectory control with 10ms wind.gif
 ```
 
-<video controls width="800">
-  <source src="./Trajectory%20control%20with%2010ms%20wind.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src="./Trajectory%20control%20with%2010ms%20wind.gif" alt="Trajectory control with 10ms wind" width="800">
 
 ## Build
 
